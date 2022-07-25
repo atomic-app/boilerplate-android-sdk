@@ -24,16 +24,6 @@
             </intent-filter>
         </activity>
 
-        <!-- We don't recommend doing below. This is just for the boilerplate app.
-             We suggest you store these in the local property file for example.
-             These are just here as an example. -->
-        <meta-data android:name="atomic.apiHost" android:value="hostValue" />
-        <meta-data android:name="atomic.apiKey" android:value="apiKey" />
-        <meta-data android:name="atomic.environmentId" android:value="envId" />
-        <!-- Hard coded for the purposes of this app. You would normally get via
-             your authentication process -->
-        <meta-data android:name="atomic.requestToken" android:value="token" />
-
     </application>
 
 </manifest>

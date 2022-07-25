@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (viewModel.streamContainer == null) {
-            viewModel.streamContainer = AACStreamContainer.Companion.create("aContainerId")
+            viewModel.streamContainer = AACStreamContainer.Companion.create("QgYOWRYq")
         }
 
         viewModel.streamContainer?.start(R.id.cardsContainer, supportFragmentManager)
