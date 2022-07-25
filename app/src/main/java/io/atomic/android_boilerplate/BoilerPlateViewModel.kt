@@ -1,8 +1,8 @@
 package io.atomic.android_boilerplate
 
 import androidx.lifecycle.ViewModel
-import com.atomic.actioncards.sdk.AACSDK
-import com.atomic.actioncards.sdk.AACStreamContainer
+import com.atomic.actioncards.sdk.*
+import java.util.*
 
 class BoilerPlateViewModel : ViewModel() {
 
@@ -10,6 +10,19 @@ class BoilerPlateViewModel : ViewModel() {
 
     init {
         configureSdk()
+    }
+
+    fun configureContainer() {
+        streamContainer?.apply {
+            cardListTitle = "Demo Stream"
+            cardVotingOptions = EnumSet.of(VotingOption.NotUseful, VotingOption.Useful)
+            votingUsefulTitle = "Like"
+            votingNotUsefulTitle = "Dislike"
+            interfaceStyle = AACInterfaceStyle.AUTOMATIC
+            presentationStyle = PresentationMode.WITH_ACTION_BUTTON
+            cardListFooterMessage = "A Footer Message"
+            cardListRefreshInterval = 30L
+        }
     }
 
     private fun configureSdk() {

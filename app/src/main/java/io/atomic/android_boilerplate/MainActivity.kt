@@ -17,8 +17,17 @@ class MainActivity : AppCompatActivity() {
 
         if (viewModel.streamContainer == null) {
             viewModel.streamContainer = AACStreamContainer.Companion.create("QgYOWRYq")
+            // apply any additional configuration / styling to your container
+            viewModel.configureContainer()
+
         }
 
         viewModel.streamContainer?.start(R.id.cardsContainer, supportFragmentManager)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        viewModel.streamContainer?.destroy(supportFragmentManager)
     }
 }
