@@ -1,2 +1,2 @@
-# -boilerplate-android-sdk
+# boilerplate-android-sdk
 Android Boilerplate App
