@@ -3,6 +3,12 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+
+// this is where you could store you atomic API values
+def atomicApiPropertiesFile = rootProject.file("apikey.properties")
+def atomicApiProperties = new Properties()
+atomicApiProperties.load(new FileInputStream(atomicApiPropertiesFile))
+
 android {
     compileSdk 32
 
@@ -14,6 +20,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_KEY", atomicApiProperties["API_KEY"])
+        buildConfigField("String", "API_HOST", atomicApiProperties["API_HOST"])
+        buildConfigField("String", "API_ENVIRONMENT_ID", atomicApiProperties["API_ENVIRONMENT_ID"])
+        buildConfigField("String", "API_CONTAINER_ID", atomicApiProperties["API_CONTAINER_ID"])
     }
 
     buildTypes {

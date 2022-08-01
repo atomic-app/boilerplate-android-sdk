@@ -45,10 +45,10 @@ class BoilerPlateViewModel : ViewModel() {
          * your API key is in the 'API Keys' section,
          * and your environment ID is at the top of the page under 'Environment ID'. */
 
-        const val containerId = ""
-        const val apiHost = ""
-        const val apiKey = ""
-        const val environmentId = ""
+        const val containerId = BuildConfig.API_CONTAINER_ID
+        const val apiHost = BuildConfig.API_HOST
+        const val apiKey = BuildConfig.API_KEY
+        const val environmentId = BuildConfig.API_ENVIRONMENT_ID
 
         /* Hard coded for the purposes of this app. You would normally get via
          your authentication process */
