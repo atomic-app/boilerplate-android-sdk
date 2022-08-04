@@ -1,0 +1,191 @@
+{
+  "project_info": {
+    "project_number": "570935054034",
+    "firebase_url": "https://shell-atomic-io.firebaseio.com",
+    "project_id": "shell-atomic-io",
+    "storage_bucket": "shell-atomic-io.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570935054034:android:e902354ddaf91df290670b",
+        "android_client_info": {
+          "package_name": "com.atomic.shellapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8mDagWCFcdgdVA4QQlZLLpPOwwCoYQ34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "570935054034-62b94jju73lednme7job971ir7f28upg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.atomic.rn.ActionCardsSampleApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570935054034:android:fc4d50cf815426ad90670b",
+        "android_client_info": {
+          "package_name": "io.atomic.android_boilerplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8mDagWCFcdgdVA4QQlZLLpPOwwCoYQ34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "570935054034-62b94jju73lednme7job971ir7f28upg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.atomic.rn.ActionCardsSampleApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570935054034:android:7d1e71fc1acf2b4190670b",
+        "android_client_info": {
+          "package_name": "io.atomic.fl.shell.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8mDagWCFcdgdVA4QQlZLLpPOwwCoYQ34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "570935054034-62b94jju73lednme7job971ir7f28upg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.atomic.rn.ActionCardsSampleApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570935054034:android:9efe37d1afe038a090670b",
+        "android_client_info": {
+          "package_name": "io.atomic.rn.ActionCardsSampleApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8mDagWCFcdgdVA4QQlZLLpPOwwCoYQ34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "570935054034-62b94jju73lednme7job971ir7f28upg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.atomic.rn.ActionCardsSampleApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570935054034:android:4585c3c024709ad190670b",
+        "android_client_info": {
+          "package_name": "io.atomic.rn.ActionCardsSampleApp.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8mDagWCFcdgdVA4QQlZLLpPOwwCoYQ34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570935054034-jliculng8t9g3ohj572nfuh20dimrb32.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "570935054034-62b94jju73lednme7job971ir7f28upg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.atomic.rn.ActionCardsSampleApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
