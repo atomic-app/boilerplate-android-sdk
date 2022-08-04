@@ -1,11 +1,19 @@
 package io.atomic.android_boilerplate
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.atomic.actioncards.feed.data.model.AACCardInstance
 import java.text.DateFormat
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,5 +78,34 @@ class MainActivity : AppCompatActivity() {
         }
 
         done(cards)
+    }
+
+    // Permissions for notifications related
+    // Declare the launcher at the top of your Activity/Fragment:
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // FCM SDK (and your app) can post notifications.
+        } else {
+            Toast.makeText(baseContext, "You won't see notifications from Atomic SDK", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun askNotificationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+            PackageManager.PERMISSION_GRANTED
+        ) {
+            // FCM SDK (and your app) can post notifications.
+        } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+            // TODO: display an educational UI explaining to the user the features that will be enabled
+            //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
+            //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
+            //       If the user selects "No thanks," allow the user to continue without notifications.
+        } else {
+            // Directly ask for the permission
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
     }
 }
