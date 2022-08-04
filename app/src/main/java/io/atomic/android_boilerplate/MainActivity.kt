@@ -7,6 +7,7 @@ import com.atomic.actioncards.feed.data.model.AACCardInstance
 import java.text.DateFormat
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: BoilerPlateViewModel
@@ -50,8 +51,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /** here is where we apply runtime variables to a card. Action any you have in your cards
-     * here. Defaults are date and name */
+    /** here is where we apply runtime variables to a card.
+     * Action any you have in your cards here. */
     private fun cardDidRequestRunTimeVariablesHandler(cards: List<AACCardInstance>, done: (cardsWithResolvedVariables: List<AACCardInstance>) -> Unit) {
 
         for (card in cards) {
