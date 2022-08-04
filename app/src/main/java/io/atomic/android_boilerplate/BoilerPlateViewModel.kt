@@ -38,6 +38,8 @@ class BoilerPlateViewModel : ViewModel() {
         }
     }
 
+    /** Register any containers we want to receive notifications for. Also look in
+     * BoilerplateFirebaseMessaging for how to intercept messages and send notifs */
     private fun registerContainersForNotifications() {
         val containers = arrayListOf(containerId)
 
