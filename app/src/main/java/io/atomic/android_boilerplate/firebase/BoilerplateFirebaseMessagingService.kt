@@ -1,8 +1,9 @@
 package io.atomic.android_boilerplate.firebase
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.PendingIntent.*
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
@@ -47,12 +48,19 @@ class BoilerplateFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private fun sendNotification(remoteMessage: RemoteMessage) {
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = PendingIntent.getActivity(
-            this, REQUEST_CODE, intent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+
+        val flags = FLAG_ONE_SHOT
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags or FLAG_IMMUTABLE
+        }
+
+        val pendingIntent = getActivity(
+            this, REQUEST_CODE, intent, flags
         )
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder: NotificationCompat.Builder =
@@ -79,11 +87,11 @@ class BoilerplateFirebaseMessagingService : FirebaseMessagingService() {
 
     companion object {
         const val TAG = "NotificationService"
-        private val REQUEST_CODE = 1
-        private val CHANNEL_ID = "atomic"
-        private val CHANNEL_NAME = "Atomic"
-        private val TITLE_KEY = "title"
-        private val MESSAGE_KEY = "body"
+        private const val REQUEST_CODE = 1
+        private const val CHANNEL_ID = "atomic"
+        private const val CHANNEL_NAME = "Atomic"
+        private const val TITLE_KEY = "title"
+        private const val MESSAGE_KEY = "body"
     }
 
 }
