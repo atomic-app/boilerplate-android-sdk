@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             card.resolveVariableWithNameAndValue("dateShort", formattedShortDate)
             card.resolveVariableWithNameAndValue("dateLong", formattedLongDate)
 
-            val userName = "My Test User"
+            val userName = "A variable changed at runtime"
             card.resolveVariableWithNameAndValue("name", userName)
 
         }

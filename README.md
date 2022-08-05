@@ -10,3 +10,7 @@ in the companion object.
 ![Viewmodel companion object](viewmodel.png)
 
 Instructions are as follows
+
+    - Open the Atomic Workbench, and navigate to the Configuration area.
+    - Under the 'SDK' header, your API host is in the 'API Host' section, your API key is in the 'API Keys' section
+    - your environment ID is at the top of the page under 'Environment ID'.
