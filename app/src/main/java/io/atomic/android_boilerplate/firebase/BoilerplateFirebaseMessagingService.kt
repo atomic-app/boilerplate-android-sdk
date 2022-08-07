@@ -53,10 +53,12 @@ class BoilerplateFirebaseMessagingService : FirebaseMessagingService() {
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-        val flags = FLAG_ONE_SHOT
+        val flags: Int
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            flags or FLAG_IMMUTABLE
+            flags = FLAG_ONE_SHOT or FLAG_IMMUTABLE
+        } else {
+            flags = FLAG_ONE_SHOT
         }
 
         val pendingIntent = getActivity(
