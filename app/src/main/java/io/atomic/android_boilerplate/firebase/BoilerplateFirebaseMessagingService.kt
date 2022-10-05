@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import com.atomic.actioncards.sdk.AACSDK
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import io.atomic.android_boilerplate.MainActivity
+import io.atomic.android_boilerplate.HomeActivity
 import io.atomic.android_boilerplate.R
 
 class BoilerplateFirebaseMessagingService : FirebaseMessagingService() {
@@ -50,7 +50,7 @@ class BoilerplateFirebaseMessagingService : FirebaseMessagingService() {
 
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun sendNotification(remoteMessage: RemoteMessage) {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         val flags: Int

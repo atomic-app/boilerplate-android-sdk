@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="io.atomic.android_boilerplate">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".BoilerPlateApplication"
@@ -15,16 +16,20 @@
         android:theme="@style/Theme.AndroidBoilerplate"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true">
+        </activity>
 
-        <service android:name=".firebase.BoilerplateFirebaseMessagingService"
+        <service
+            android:name=".firebase.BoilerplateFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -34,9 +39,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
-
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -1,31 +1,40 @@
 package io.atomic.android_boilerplate
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.activity.addCallback
+import androidx.fragment.app.activityViewModels
 import com.atomic.actioncards.feed.data.model.AACCardInstance
 import java.text.DateFormat
 import java.util.*
 
 
-class MainActivity : AppCompatActivity() {
+class CardFragment : Fragment() {
 
-    private lateinit var viewModel: BoilerPlateViewModel
+    private val viewModel: BoilerPlateViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[BoilerPlateViewModel::class.java]
-        setContentView(R.layout.activity_main)
-
-        viewModel.initContainer()
-        viewModel.streamContainer?.start(R.id.cardsContainer, supportFragmentManager)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_card, container, false)
+    }
 
-        viewModel.streamContainer?.destroy(supportFragmentManager)
+    override fun onStart() {
+        super.onStart()
+        viewModel.streamContainer?.start(R.id.card_container, this.childFragmentManager)
     }
 
     override fun onResume() {
@@ -37,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         applyHandlers(true)
     }
-
 
     /** This is currently only setting runtime variables handler, but you could also setup
      * any handlers for link and submit buttons in here too */
@@ -67,7 +75,6 @@ class MainActivity : AppCompatActivity() {
 
             val userName = "A variable changed at runtime"
             card.resolveVariableWithNameAndValue("name", userName)
-
         }
 
         done(cards)

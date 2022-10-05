@@ -1,13 +1,22 @@
 package io.atomic.android_boilerplate
 
+import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.atomic.actioncards.sdk.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class BoilerPlateViewModel : ViewModel() {
 
     var streamContainer: AACStreamContainer? = null
+
+    val countLiveData = MutableLiveData<String?>("Loading...")
+
+    val getStreamContainerId
+        get() = containerId
 
     fun initContainer() {
         if (streamContainer != null) {
@@ -28,7 +37,44 @@ class BoilerPlateViewModel : ViewModel() {
         registerContainersForNotifications()
     }
 
-    private fun configureSdk() {
+    fun startContainerUpdates(context: Context) {
+        streamContainer = AACStreamContainer(containerId)
+        streamContainer?.apply {
+
+            cardListTitle = "Demo Stream"
+            cardVotingOptions = EnumSet.of(VotingOption.NotUseful, VotingOption.Useful)
+            votingUsefulTitle = "Like"
+            votingNotUsefulTitle = "Dislike"
+            interfaceStyle = AACInterfaceStyle.AUTOMATIC
+            presentationStyle = PresentationMode.WITH_ACTION_BUTTON
+            cardListFooterMessage = "A Footer Message"
+            cardListRefreshInterval = 30L
+
+            cardDidRequestRunTimeVariablesHandler = { cards, done ->
+                for (card in cards) {
+                    val longDatePattern = "MMMM dd, yyyy 'at' HH:mm:ss"
+                    val shortDatePattern = "MMM dd, yyyy"
+                    val longDf: DateFormat = SimpleDateFormat(longDatePattern, Locale.getDefault())
+                    val shortDf: DateFormat = SimpleDateFormat(shortDatePattern, Locale.getDefault())
+                    val today = Calendar.getInstance().time
+                    val formattedLongDate = longDf.format(today)
+                    val formattedShortDate = shortDf.format(today)
+
+                    card.resolveVariableWithNameAndValue("dateShort", formattedShortDate)
+                    card.resolveVariableWithNameAndValue("dateLong", formattedLongDate)
+                }
+                done(cards)
+            }
+        }.also {
+            streamContainer?.startUpdates(context)
+        }
+    }
+
+    fun stopContainerUpdates(){
+        streamContainer?.stopUpdates()
+    }
+
+    fun configureSdk() {
         AACSDK.setApiHost(apiHost)
         AACSDK.setEnvironmentId(environmentId)
         AACSDK.setApiKey(apiKey)
