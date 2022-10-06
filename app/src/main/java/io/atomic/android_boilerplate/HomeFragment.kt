@@ -20,22 +20,7 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        binding.showCardsButton.setOnClickListener {
-            val cardFragment = CardFragment()
-            parentFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, cardFragment, "CARD_FRAGMENT")
-                .addToBackStack(null)
-                .commit()
-        }
-
-        binding.logOutButton.setOnClickListener {
-            AACSDK.logout {
-                requireActivity().runOnUiThread {
-                    Toast.makeText(context, "Logged off", Toast.LENGTH_SHORT).show()
-                }
-                requireActivity().finish()
-            }
-        }
+        initListeners()
 
         // This is used to initialize the value
         viewModel.countLiveData.observe(this) {
@@ -57,5 +42,27 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return binding.root
+    }
+
+
+    /** Initialise the button click listeners */
+    private fun initListeners() {
+        // CARDS BUTTON
+        binding.showCardsButton.setOnClickListener {
+            val cardFragment = CardFragment()
+            parentFragmentManager.beginTransaction()
+                .add(R.id.fragment_container, cardFragment, "CARD_FRAGMENT")
+                .addToBackStack(null)
+                .commit()
+        }
+        // LOGOUT BUTTON
+        binding.logOutButton.setOnClickListener {
+            AACSDK.logout {
+                requireActivity().runOnUiThread {
+                    Toast.makeText(context, "Logged off", Toast.LENGTH_SHORT).show()
+                }
+                requireActivity().finish()
+            }
+        }
     }
 }

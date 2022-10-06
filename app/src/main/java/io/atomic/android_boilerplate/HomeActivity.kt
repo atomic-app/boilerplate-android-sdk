@@ -22,7 +22,10 @@ class HomeActivity : AppCompatActivity(R.layout.activity_main) {
             }
         }
 
+        // configure the sdk with hardcoded creds.
         viewModel.configureSdk()
+        // start the websocket container updates to notify of incoming cards
+        // via LiveData observer
         viewModel.startContainerUpdates(this)
     }
 

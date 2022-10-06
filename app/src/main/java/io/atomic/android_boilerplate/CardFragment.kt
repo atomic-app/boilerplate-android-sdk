@@ -19,6 +19,7 @@ class CardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // add custom back code here if needed. We just pop the stack in this case
         requireActivity().onBackPressedDispatcher.addCallback {
             requireActivity().supportFragmentManager.popBackStack()
         }
@@ -34,6 +35,7 @@ class CardFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        // add the stream container to our layout
         viewModel.streamContainer?.start(R.id.card_container, this.childFragmentManager)
     }
 
