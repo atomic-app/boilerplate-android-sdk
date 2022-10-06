@@ -40,7 +40,7 @@ You should see the start activity:
 <br><br><br><br><br>
 Tapping <code>LOGIN</code> will load the <code>HomeActivity</code> 
 <br><br><br><br><br>
-<img src="home_activity.png" with="500" />
+<img src="home_activity.png" width="500" />
 <br><br><br><br><br>
 This screen shows any cards your account has active in the container. This will update live if new cards are sent. Tapping <code>LOGOUT</code> with call <code>AACSDK.logout()</code> which will clear all data and pop you back to the start activity.
 
