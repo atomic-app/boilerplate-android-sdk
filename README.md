@@ -23,7 +23,7 @@ at `applyHandlers`
 
 ## Notifications
 
-An example of how to receive and create in app notifications can be found in `BolierplateFirebaseMessaging`
+An example of how to receive and create in app notifications can be found in `BoilerplateFirebaseMessaging`
 You will have to supply your own google-services.json file from your own app on the Firebase console.
 Information for the whole process can be found [here](https://documentation.atomic.io/sdks/android#notifications)
 including the Firebase setup documentation.
@@ -38,11 +38,11 @@ You should see the start activity:
 
 <img src="start_activity.png" width="500" />
 <br><br><br><br><br>
-Tapping `LOGIN` will load the `HomeActivity` 
+Tapping <code>LOGIN</code> will load the <code>HomeActivity</code> 
 <br><br><br><br><br>
 <img src="home_activity.png" with="500" />
 <br><br><br><br><br>
-This screen shows any cards your account has active in the container. This will update live if new cards are sent. Tapping `LOGOUT` with call `AACSDK.logout()` which will clear all data and pop you back to the start activity.
+This screen shows any cards your account has active in the container. This will update live if new cards are sent. Tapping <code>LOGOUT</code> with call <code>AACSDK.logout()</code> which will clear all data and pop you back to the start activity.
 
 Tapping `CARDS` will load the stream container fragment.
 
