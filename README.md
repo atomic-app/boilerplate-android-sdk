@@ -42,7 +42,7 @@ Tapping <code>LOGIN</code> will load the <code>HomeActivity</code>
 <br><br><br><br><br>
 <img src="home_activity.png" width="500" />
 <br><br><br><br><br>
-This screen shows any cards your account has active in the container. This will update live if new cards are sent. Tapping <code>LOGOUT</code> with call <code>AACSDK.logout()</code> which will clear all data and pop you back to the start activity.
+This screen shows the card count your account has active in the container. This will update live if new cards are sent. Tapping <code>LOGOUT</code> with call <code>AACSDK.logout()</code> which will clear all data and pop you back to the start activity.
 
 Tapping `CARDS` will load the stream container fragment.
 
