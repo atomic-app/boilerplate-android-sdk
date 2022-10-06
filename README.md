@@ -27,3 +27,34 @@ An example of how to receive and create in app notifications can be found in `Bo
 You will have to supply your own google-services.json file from your own app on the Firebase console.
 Information for the whole process can be found [here](https://documentation.atomic.io/sdks/android#notifications)
 including the Firebase setup documentation.
+
+## Container updates branch
+
+On this branch `feature/added-login-and-container-updates` there is an example of login/logoff flow with live container updates. 
+
+Enter your configuration settings as per above and run the app.
+
+You should see the start activity:
+
+<img src="start_activity.png" width="500" />
+<br><br><br><br><br>
+Tapping `LOGIN` will load the `HomeActivity` 
+<br><br><br><br><br>
+<img src="home_activity.png" with="500" />
+<br><br><br><br><br>
+This screen shows any cards your account has active in the container. This will update live if new cards are sent. Tapping `LOGOUT` with call `AACSDK.logout()` which will clear all data and pop you back to the start activity.
+
+Tapping `CARDS` will load the stream container fragment.
+
+## Best practice code
+
+If you check out `BoilerPlateViewModel` you will see how to start and stop streamContainerUpdates and also how to initialise and configure a stream container.
+
+`HomeFragment` has an example of how to configure a `TextView` for live updates via the websocket for card counts.
+
+`HomeActivity` has examples of how to call this code from a parent activity.
+
+
+
+
+
