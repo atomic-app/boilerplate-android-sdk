@@ -1,4 +1,8 @@
-This is a boiler-plate app to get you started with the Atomic SDK for Android
+# Android Boilerplate App
+
+This is a boiler-plate app to get you started with the Atomic SDK for Android. The App implements a Login, Logout, Card Count, Stream Container. Flow as shown below.
+
+<img width="883" alt="Screen Shot 2022-10-05 at 11 36 05 AM" src="https://user-images.githubusercontent.com/1093520/194960983-97b5a329-ccc0-475b-a433-d8212566c85b.png">
 
 The code is based around the [documentation] (https://documentation.atomic.io/sdks/android) and
 designed to get you up and running as quickly as possible, not necessarily as best practice.
