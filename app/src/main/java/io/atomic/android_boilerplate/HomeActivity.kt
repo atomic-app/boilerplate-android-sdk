@@ -23,14 +23,14 @@ class HomeActivity : AppCompatActivity(R.layout.activity_main) {
         }
 
         /********
-         * Must be called here once the token is established? 
+         * Must be called here once the token is established?
          */
 
         // configure the sdk with hardcoded creds.
-        //viewModel.configureSdk()
+        viewModel.configureSdk()
         // start the websocket container updates to notify of incoming cards
         // via LiveData observer
-        //viewModel.startContainerUpdates(this)
+        viewModel.startContainerUpdates(this)
     }
 
     override fun onDestroy() {

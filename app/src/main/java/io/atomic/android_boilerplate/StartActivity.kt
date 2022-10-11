@@ -23,8 +23,8 @@ class StartActivity : AppCompatActivity() {
         }
 
         // If called from here it doesn't work as it's not setup correctly
-        viewModel.configureSdk()
-        viewModel.startContainerUpdates(this)
+        //viewModel.configureSdk()
+        //viewModel.startContainerUpdates(this)
     }
 
 
