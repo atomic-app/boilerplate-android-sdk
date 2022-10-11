@@ -14,12 +14,11 @@ class AtomicClient constructor(private val context: Context) {
 
     companion object {
         private const val LOG_LEVEL = 3
-        const val containerId = "4ROg0w76"
-        const val apiHost = "https://67-1.client-api.atomic.io"
-        const val apiKey = "atomic-public-key"
-        const val environmentId = "r5WN0m"
-        const val requestTokenStr =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI1MzMzNTc0IiwiZXhwIjoxNjY1NTYxNDE2LCJpYXQiOjE2NjU1MjU0MTZ9.i6PrKtQw1JesWC1_71ZpdoKY8gVHamLEVgh9ZFN_-9waHo6yy7SRYsjl9_IVQecCDaZ3Q-lIBUtITE5FIG8VqMWBzaK8Ld1EZS-89uV8M-SAJvxQ_ZnMID-606OaKoN6yGciyH3wWFW7CHeNbj03qyejjjyeMpEtZK25Gs0Mgy_dyLFqP4DZSjE1w_lWYS9YcpITE0S0eZC7Rgv5bnipKoZxNBXGEMkeW2tNc1CynKiLYWhYfyVCdyUbPkLeBPRTtDjWhfXcsgLAQ5wBNvu-ztxsWhlHc7VoNVETptdA6RzY_QcjUZ-CqlyIu6JYQcyDbIAJscF45tVTisKjR6VX1UDLsSBUEWPr04n8PI0z0BEIKxt3hivO292O4E75ALx1AsPCpDhLjtACwJJiFbdkSh535aic21JWkE1KRxMJB9xrW_XRcvEjmMfMtd2hZIu_bQPBOAQzyGaqYKLqf-WTRrcPO5zduqlSEu_2wiVmDMgHz2rs0FouPXfZlC9WsDoow2yqu_BGG-4YsEMoZ7aTfWYzZwKbR5gQoHHPwv1MPfJSL14I_CCWHIZYIuG5FAwHjz_GoNmCkUpVm9Llg30Q_l5HcJoFYc5VlmOFAmfkvTVKaxhHEo1K8aeJyyB47P9Oyh2VR2V9GENItVpazJ26t699hdnClvaMNNBTwlXGZ7E"
+        const val containerId = ""
+        const val apiHost = ""
+        const val apiKey = ""
+        const val environmentId = ""
+        const val requestTokenStr = ""
         private const val SERRANO_FONT = "serrano"
     }
 
