@@ -9,6 +9,8 @@ class StartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 
+    private val viewModel: BoilerPlateViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -19,6 +21,10 @@ class StartActivity : AppCompatActivity() {
             // login and go to main activity
             launchHomeActivity()
         }
+
+        // If called from here it doesn't work as it's not setup correctly
+        viewModel.configureSdk()
+        viewModel.startContainerUpdates(this)
     }
 
 
