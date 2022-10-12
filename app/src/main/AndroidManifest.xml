@@ -14,8 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBoilerplate"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name="io.logout.CountActivity"
+            android:exported="false" />
+        <activity
+            android:name="io.logout.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
