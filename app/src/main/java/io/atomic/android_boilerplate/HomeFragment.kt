@@ -1,6 +1,7 @@
 package io.atomic.android_boilerplate
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,14 +25,29 @@ class HomeFragment : Fragment() {
 
         // This is used to initialize the value
         viewModel.countLiveData.observe(this) {
-            binding.cardCountTv.text = it ?: ""
+            binding.cardCountDash.text = it ?: ""
         }
 
         // This is used to update the value
-        AACSDK.getLiveCardCountForStreamContainer(viewModel.getStreamContainerId)
+        AACSDK.getLiveCardCountForStreamContainer(viewModel.getDashboardId)
             .observe(this) {
                 it?.let { value ->
-                    binding.cardCountTv.text = "Card Count: $value"
+                    Log.d("Atomic", "Dashboard count: $value")
+                    binding.cardCountDash.text = "Dash Cards Count: $value"
+                }
+            }
+
+        // This is used to initialize the value
+        viewModel.countLiveDataAllCards.observe(this) {
+            binding.cardCountAllCards.text = it ?: ""
+        }
+
+        // This is used to update the value
+        AACSDK.getLiveCardCountForStreamContainer(viewModel.getAllCardsId)
+            .observe(this) {
+                it?.let { value ->
+                    Log.d("Atomic", "All Cards count: $value")
+                    binding.cardCountAllCards.text = "All Cards Count: $value"
                 }
             }
     }

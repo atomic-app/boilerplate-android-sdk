@@ -36,7 +36,7 @@ class HomeActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onDestroy() {
         super.onDestroy()
         //viewModel.stopContainerUpdates()
-        viewModel.streamContainer?.destroy(supportFragmentManager)
+        viewModel.allCardsContainer?.destroy(supportFragmentManager)
     }
 
     companion object {

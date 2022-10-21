@@ -36,7 +36,7 @@ class CardFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         // add the stream container to our layout
-        viewModel.streamContainer?.start(R.id.card_container, this.childFragmentManager)
+        viewModel.allCardsContainer?.start(R.id.card_container, this.childFragmentManager)
     }
 
     override fun onResume() {
@@ -53,10 +53,10 @@ class CardFragment : Fragment() {
      * any handlers for link and submit buttons in here too */
     private fun applyHandlers(shallReset: Boolean = false){
         if (shallReset) {
-            viewModel.streamContainer?.cardDidRequestRunTimeVariablesHandler = null
+            viewModel.allCardsContainer?.cardDidRequestRunTimeVariablesHandler = null
         }
 
-        viewModel.streamContainer?.cardDidRequestRunTimeVariablesHandler = { cards, done ->
+        viewModel.allCardsContainer?.cardDidRequestRunTimeVariablesHandler = { cards, done ->
             cardDidRequestRunTimeVariablesHandler(cards, done)
         }
     }

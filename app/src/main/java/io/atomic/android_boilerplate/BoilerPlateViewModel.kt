@@ -11,20 +11,21 @@ import java.util.*
 
 class BoilerPlateViewModel : ViewModel() {
 
-    var streamContainer: AACStreamContainer? = null
-
+    var dashboardContainer: AACStreamContainer? = null
     val countLiveData = MutableLiveData<String?>("Loading...")
+    val getDashboardId get() = dashboardID
 
-    val getStreamContainerId
-        get() = containerId
+    var allCardsContainer: AACStreamContainer? = null
+    val countLiveDataAllCards = MutableLiveData<String?>("Loading...")
+    val getAllCardsId get() = allCardsId
 
     fun initContainer() {
-        if (streamContainer != null) {
+        if (dashboardContainer != null) {
             return
         }
         configureSdk()
-        streamContainer = AACStreamContainer.Companion.create(containerId)
-        streamContainer?.apply {
+        dashboardContainer = AACSingleCardView.Companion.create(dashboardID)
+        dashboardContainer?.apply {
             cardListTitle = "Demo Stream"
             cardVotingOptions = EnumSet.of(VotingOption.NotUseful, VotingOption.Useful)
             votingUsefulTitle = "Like"
@@ -38,40 +39,20 @@ class BoilerPlateViewModel : ViewModel() {
     }
 
     fun startContainerUpdates(context: Context) {
-        streamContainer = AACStreamContainer(containerId)
-        streamContainer?.apply {
+        dashboardContainer = AACStreamContainer(dashboardID)
+        dashboardContainer?.apply {
+            dashboardContainer?.startUpdates(context)
+        }
 
-            cardListTitle = "Demo Stream"
-            cardVotingOptions = EnumSet.of(VotingOption.NotUseful, VotingOption.Useful)
-            votingUsefulTitle = "Like"
-            votingNotUsefulTitle = "Dislike"
-            interfaceStyle = AACInterfaceStyle.AUTOMATIC
-            presentationStyle = PresentationMode.WITH_ACTION_BUTTON
-            cardListFooterMessage = "A Footer Message"
-            cardListRefreshInterval = 30L
-
-            cardDidRequestRunTimeVariablesHandler = { cards, done ->
-                for (card in cards) {
-                    val longDatePattern = "MMMM dd, yyyy 'at' HH:mm:ss"
-                    val shortDatePattern = "MMM dd, yyyy"
-                    val longDf: DateFormat = SimpleDateFormat(longDatePattern, Locale.getDefault())
-                    val shortDf: DateFormat = SimpleDateFormat(shortDatePattern, Locale.getDefault())
-                    val today = Calendar.getInstance().time
-                    val formattedLongDate = longDf.format(today)
-                    val formattedShortDate = shortDf.format(today)
-
-                    card.resolveVariableWithNameAndValue("dateShort", formattedShortDate)
-                    card.resolveVariableWithNameAndValue("dateLong", formattedLongDate)
-                }
-                done(cards)
-            }
-        }.also {
-            streamContainer?.startUpdates(context)
+        allCardsContainer = AACStreamContainer(allCardsId)
+        allCardsContainer?.apply {
+            allCardsContainer?.startUpdates(context)
         }
     }
 
     fun stopContainerUpdates(){
-        streamContainer?.stopUpdates()
+        dashboardContainer?.stopUpdates()
+        dashboardContainer?.stopUpdates()
     }
 
     fun configureSdk() {
@@ -87,10 +68,9 @@ class BoilerPlateViewModel : ViewModel() {
     /** Register any containers we want to receive notifications for. Also look in
      * BoilerplateFirebaseMessaging for how to intercept messages and send notifs */
     private fun registerContainersForNotifications() {
-        val containers = arrayListOf(containerId)
-
-        AACSDK.registerStreamContainersForNotifications(containers)
-
+//        val containers = arrayListOf(containerId)
+//
+//        AACSDK.registerStreamContainersForNotifications(containers)
     }
 
     companion object {
@@ -101,7 +81,10 @@ class BoilerPlateViewModel : ViewModel() {
          * your API key is in the 'API Keys' section,
          * and your environment ID is at the top of the page under 'Environment ID'. */
 
-        const val containerId = ""
+        // Id for a stream container that shows a selected amount of cards
+        const val dashboardID = ""
+        // ID for a stream container that shows all cards
+        const val allCardsId = ""
         const val apiHost = ""
         const val apiKey = ""
         const val environmentId = ""
