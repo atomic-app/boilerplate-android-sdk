@@ -26,6 +26,7 @@ class BoilerPlateViewModel : ViewModel() {
             cardListRefreshInterval = 30L
         }
         registerContainersForNotifications()
+        registerContainersWithHandlers()
     }
 
     private fun configureSdk() {
@@ -45,6 +46,18 @@ class BoilerPlateViewModel : ViewModel() {
 
         AACSDK.registerStreamContainersForNotifications(containers)
 
+    }
+
+    private fun registerContainersWithHandlers() {
+        streamContainer?.submitButtonWithPayloadActionHandler = { event ->
+            Log.d("Atomic", "Submit Callback triggered with payload: ${event.payload}")
+        }
+        streamContainer?.linkButtonWithPayloadActionHandler = { event ->
+            Log.d("Atomic", "Submit Callback triggered with payload: ${event.payload}")
+        }
+        streamContainer?.cardEventHandler = { event ->
+            Log.d("Atomic", "Submit Callback triggered with payload: ${event}")
+        }
     }
 
     companion object {
