@@ -1,9 +1,16 @@
 package io.atomic.android_boilerplate
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import com.atomic.actioncards.feed.data.model.AACCardInstance
+import com.atomic.actioncards.feed.lib.Logger
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.text.DateFormat
 import java.util.*
 
@@ -11,6 +18,11 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: BoilerPlateViewModel
+
+    // secondary container contained in a BottomSheet
+    private val bottomSheetView by lazy { findViewById<FrameLayout>(R.id.bottomSheetView) }
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
+    private var bottomSheetVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,12 +32,19 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.initContainer()
         viewModel.streamContainer?.start(R.id.cardsContainer, supportFragmentManager)
+
+        viewModel.initSecondaryContainer()
+        viewModel.secondaryContainer?.start(R.id.bottomSheetView, supportFragmentManager)
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetView)
+        setBottomSheetVisibility(bottomSheetVisible)
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
         viewModel.streamContainer?.destroy(supportFragmentManager)
+        viewModel.secondaryContainer?.destroy(supportFragmentManager)
     }
 
     override fun onResume() {
@@ -38,6 +57,22 @@ class MainActivity : AppCompatActivity() {
         applyHandlers(true)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.notif_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.notif_item -> {
+                bottomSheetVisible = !bottomSheetVisible
+                setBottomSheetVisibility(bottomSheetVisible)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     /** This is currently only setting runtime variables handler, but you could also setup
      * any handlers for link and submit buttons in here too */
@@ -71,5 +106,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         done(cards)
+    }
+
+    private fun setBottomSheetVisibility(isVisible: Boolean) {
+        val updatedState = if (isVisible) BottomSheetBehavior.STATE_EXPANDED else BottomSheetBehavior.STATE_COLLAPSED
+        bottomSheetBehavior.state = updatedState
     }
 }
