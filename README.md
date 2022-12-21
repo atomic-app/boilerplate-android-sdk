@@ -1,6 +1,6 @@
 # Android Boilerplate App
 
-This is a boiler-plate app to get you started with the Atomic SDK for Android.
+This is a boiler-plate app that can be forked to get you started with the Atomic SDK for Android.
 
 The code is based around the [documentation] (https://documentation.atomic.io/sdks/android) and
 designed to get you up and running as quickly as possible, not necessarily as best practice.
@@ -25,7 +25,7 @@ at `applyHandlers`
 
 ## Notifications
 
-An example of how to receive and create in app notifications can be found in `BolierplateFirebaseMessaging`
+An example of how to receive and create in app notifications can be found in `BoilerplateFirebaseMessaging`
 You will have to supply your own google-services.json file from your own app on the Firebase console.
 Information for the whole process can be found [here](https://documentation.atomic.io/sdks/android#notifications)
 including the Firebase setup documentation.
