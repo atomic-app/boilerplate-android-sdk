@@ -90,3 +90,7 @@ lint/tmp/
 # apikey.properties
 apikey.properties
 .idea/deploymentTargetDropDown.xml
+
+caches/
+
+
