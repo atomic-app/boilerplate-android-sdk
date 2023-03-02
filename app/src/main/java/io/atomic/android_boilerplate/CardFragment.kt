@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import com.atomic.actioncards.feed.data.model.AACCardInstance
+import com.atomic.actioncards.sdk.AACStreamContainer
 import java.text.DateFormat
 import java.util.*
 
@@ -16,6 +17,8 @@ class CardFragment : Fragment() {
 
     private val viewModel: BoilerPlateViewModel by activityViewModels()
 
+    private var container: AACStreamContainer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,6 +26,8 @@ class CardFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback {
             requireActivity().supportFragmentManager.popBackStack()
         }
+
+        container = AACStreamContainer(BoilerPlateViewModel.containerId)
     }
 
     override fun onCreateView(
@@ -36,49 +41,12 @@ class CardFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         // add the stream container to our layout
-        viewModel.streamContainer?.start(R.id.card_container, this.childFragmentManager)
+        container?.start(R.id.card_container, this.childFragmentManager)
     }
 
-    override fun onResume() {
-        super.onResume()
-        applyHandlers()
+    override fun onDestroy() {
+        super.onDestroy()
+        container?.destroy(childFragmentManager)
     }
 
-    override fun onPause() {
-        super.onPause()
-        applyHandlers(true)
-    }
-
-    /** This is currently only setting runtime variables handler, but you could also setup
-     * any handlers for link and submit buttons in here too */
-    private fun applyHandlers(shallReset: Boolean = false){
-        if (shallReset) {
-            viewModel.streamContainer?.cardDidRequestRunTimeVariablesHandler = null
-        }
-
-        viewModel.streamContainer?.cardDidRequestRunTimeVariablesHandler = { cards, done ->
-            cardDidRequestRunTimeVariablesHandler(cards, done)
-        }
-    }
-
-    /** here is where we apply runtime variables to a card.
-     * Action any you have in your cards here. */
-    private fun cardDidRequestRunTimeVariablesHandler(cards: List<AACCardInstance>, done: (cardsWithResolvedVariables: List<AACCardInstance>) -> Unit) {
-
-        for (card in cards) {
-            val longDf: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
-            val shortDf: DateFormat = DateFormat.getDateInstance(DateFormat.SHORT)
-            val today = Calendar.getInstance().time
-            val formattedLongDate = longDf.format(today)
-            val formattedShortDate = shortDf.format(today)
-
-            card.resolveVariableWithNameAndValue("dateShort", formattedShortDate)
-            card.resolveVariableWithNameAndValue("dateLong", formattedLongDate)
-
-            val userName = "A variable changed at runtime"
-            card.resolveVariableWithNameAndValue("name", userName)
-        }
-
-        done(cards)
-    }
 }

@@ -8,13 +8,31 @@
     tools:context=".HomeFragment">
 
     <TextView
-        android:id="@+id/card_count_tv"
+        android:id="@+id/card_count_dash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Dash"/>
+
+    <TextView
+        android:id="@+id/card_count_all_cards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/card_count_dash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="allcards" />
+
+    <FrameLayout
+        android:id="@+id/single_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/card_count_dash" />
 
     <Button
         android:id="@+id/log_out_button"
@@ -37,5 +55,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/blank_fragment_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blank"
+        app:layout_constraintBottom_toBottomOf="@+id/show_cards_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/show_cards_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
