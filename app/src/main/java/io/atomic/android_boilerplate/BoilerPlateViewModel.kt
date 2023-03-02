@@ -11,50 +11,6 @@ import java.util.*
 
 class BoilerPlateViewModel : ViewModel() {
 
-    var dashboardContainer: AACStreamContainer? = null
-    val countLiveData = MutableLiveData<String?>("Loading...")
-    val getDashboardId get() = dashboardID
-
-    var allCardsContainer: AACStreamContainer? = null
-    val countLiveDataAllCards = MutableLiveData<String?>("Loading...")
-    val getAllCardsId get() = allCardsId
-
-    fun initContainer() {
-        if (dashboardContainer != null) {
-            return
-        }
-        configureSdk()
-        dashboardContainer = AACSingleCardView.Companion.create(dashboardID)
-        dashboardContainer?.apply {
-            cardListTitle = "Demo Stream"
-            cardVotingOptions = EnumSet.of(VotingOption.NotUseful, VotingOption.Useful)
-            votingUsefulTitle = "Like"
-            votingNotUsefulTitle = "Dislike"
-            interfaceStyle = AACInterfaceStyle.AUTOMATIC
-            presentationStyle = PresentationMode.WITH_ACTION_BUTTON
-            cardListFooterMessage = "A Footer Message"
-            cardListRefreshInterval = 30L
-        }
-        registerContainersForNotifications()
-    }
-
-    fun startContainerUpdates(context: Context) {
-        dashboardContainer = AACStreamContainer(dashboardID)
-        dashboardContainer?.apply {
-            dashboardContainer?.startUpdates(context)
-        }
-
-        allCardsContainer = AACStreamContainer(allCardsId)
-        allCardsContainer?.apply {
-            allCardsContainer?.startUpdates(context)
-        }
-    }
-
-    fun stopContainerUpdates(){
-        dashboardContainer?.stopUpdates()
-        dashboardContainer?.stopUpdates()
-    }
-
     fun configureSdk() {
         AACSDK.setApiHost(apiHost)
         AACSDK.setEnvironmentId(environmentId)
@@ -63,14 +19,6 @@ class BoilerPlateViewModel : ViewModel() {
             Log.d("Atomic Boilerplate", "onTokenReceived")
             onTokenReceived(requestTokenStr)
         }
-    }
-
-    /** Register any containers we want to receive notifications for. Also look in
-     * BoilerplateFirebaseMessaging for how to intercept messages and send notifs */
-    private fun registerContainersForNotifications() {
-//        val containers = arrayListOf(containerId)
-//
-//        AACSDK.registerStreamContainersForNotifications(containers)
     }
 
     companion object {

@@ -30,13 +30,6 @@ class HomeActivity : AppCompatActivity(R.layout.activity_main) {
         viewModel.configureSdk()
         // start the websocket container updates to notify of incoming cards
         // via LiveData observer
-        viewModel.startContainerUpdates(this)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //viewModel.stopContainerUpdates()
-        viewModel.allCardsContainer?.destroy(supportFragmentManager)
     }
 
     companion object {
