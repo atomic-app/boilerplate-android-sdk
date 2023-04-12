@@ -73,13 +73,13 @@ class HomeFragment : Fragment() {
     private fun initListeners() {
         // CARDS BUTTON
         binding.showCardsButton.setOnClickListener {
-            val direction = HomeFragmentDirections.actionHomeFragmentToCardFragment()
+            val direction = HomeFragmentDirections.clickCardButton()
             findNavController().navigate(direction)
         }
 
         // BLANK BUTTON
         binding.blankFragmentButton.setOnClickListener {
-            val direction = HomeFragmentDirections.actionHomeFragmentToBlankFragment()
+            val direction = HomeFragmentDirections.clickBlankButton()
             findNavController().navigate(direction)
         }
 

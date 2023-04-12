@@ -11,10 +11,10 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_cardFragment"
+            android:id="@+id/clickCardButton"
             app:destination="@id/cardFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_blankFragment"
+            android:id="@+id/clickBlankButton"
             app:destination="@id/blankFragment" />
     </fragment>
     <fragment

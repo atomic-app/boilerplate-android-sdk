@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.atomic.actioncards.feed.data.model.AACCardInstance
 import com.atomic.actioncards.sdk.AACStreamContainer
 import java.text.DateFormat
@@ -26,6 +28,12 @@ class CardFragment : Fragment() {
         }
 
         AtomicClass.onCreate()
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
     }
 
     override fun onCreateView(
