@@ -29,6 +29,8 @@ class StartActivity : AppCompatActivity() {
 
 
     private fun launchHomeActivity() {
+        AtomicClass.startSession()
+
         val intent = HomeActivity.makeIntent(context = this)
         startActivity(intent)
     }

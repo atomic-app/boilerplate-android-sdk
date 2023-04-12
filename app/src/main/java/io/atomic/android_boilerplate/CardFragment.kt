@@ -17,8 +17,6 @@ class CardFragment : Fragment() {
 
     private val viewModel: BoilerPlateViewModel by activityViewModels()
 
-    private var container: AACStreamContainer? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,7 +25,7 @@ class CardFragment : Fragment() {
             requireActivity().supportFragmentManager.popBackStack()
         }
 
-        container = AACStreamContainer(BoilerPlateViewModel.containerId)
+        AtomicClass.onCreate()
     }
 
     override fun onCreateView(
@@ -41,12 +39,12 @@ class CardFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         // add the stream container to our layout
-        container?.start(R.id.card_container, this.childFragmentManager)
+        AtomicClass.getMessageCenter()?.start(R.id.card_container, this.childFragmentManager)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        container?.destroy(childFragmentManager)
+    override fun onPause() {
+        super.onPause()
+        AtomicClass.onPause(childFragmentManager)
     }
 
 }

@@ -18,8 +18,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private var singleCard: AACSingleCardView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,9 +25,7 @@ class HomeFragment : Fragment() {
 
         initListeners()
 
-        AtomicClass.startSession()
-
-        singleCard = AACSingleCardView(BoilerPlateViewModel.singleCardID)
+        AtomicClass.onCreate()
     }
 
     override fun onCreateView(
@@ -43,15 +39,11 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        AtomicClass.onCreate()
-
         AtomicClass.getMessageCenter()?.startUpdates(requireContext())
 
-        AtomicClass.getDashboard()?.let { card ->
-            card.apply {
-                cardVotingOptions = EnumSet.of(VotingOption.Useful, VotingOption.NotUseful)
-            }.start(R.id.single_card_view, childFragmentManager)
-        }
+        AtomicClass.getDashboard()?.apply {
+            cardVotingOptions = EnumSet.of(VotingOption.Useful, VotingOption.NotUseful)
+        }?.start(R.id.single_card_view, childFragmentManager)
     }
 
     override fun onResume() {
@@ -72,11 +64,10 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        singleCard?.destroy(childFragmentManager)
+    override fun onPause() {
+        super.onPause()
+        AtomicClass.onPause(childFragmentManager)
     }
-
 
     /** Initialise the button click listeners */
     private fun initListeners() {
@@ -94,7 +85,7 @@ class HomeFragment : Fragment() {
 
         // LOGOUT BUTTON
         binding.logOutButton.setOnClickListener {
-            AACSDK.logout {
+            AtomicClass.endSession {
                 requireActivity().runOnUiThread {
                     Toast.makeText(context, "Logged off", Toast.LENGTH_SHORT).show()
                 }
