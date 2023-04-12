@@ -7,6 +7,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
+    <FrameLayout
+        android:id="@+id/single_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/card_count_dash" />
+
     <TextView
         android:id="@+id/card_count_dash"
         android:layout_width="wrap_content"
@@ -26,13 +34,15 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="allcards" />
 
-    <FrameLayout
-        android:id="@+id/single_card_view"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:padding="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/card_count_dash" />
+        app:layout_constraintTop_toBottomOf="@+id/card_count_all_cards"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Delete all cards unstil dash count is 0\nthen on this screen, send a card to all cards stream,\n and it will show up here" />
+
 
     <Button
         android:id="@+id/log_out_button"
