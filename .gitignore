@@ -44,6 +44,8 @@ captures/
 .idea/assetWizardSettings.xml
 .idea/dictionaries
 .idea/libraries
+.idea/compiler.xml
+.idea/misc.xml
 # Android Studio 3 in .gitignore file.
 .idea/caches
 .idea/modules.xml
@@ -90,3 +92,15 @@ lint/tmp/
 # apikey.properties
 apikey.properties
 .idea/deploymentTargetDropDown.xml
+
+#intellij and gradle tmp files
+.idea/
+.tmp/
+caches/
+daemon/
+native/
+wrapper/
+jdks/
+kotlin-profile/
+android.lock
+android/FakeDependency.jar

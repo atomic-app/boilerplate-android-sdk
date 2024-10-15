@@ -32,10 +32,13 @@ class BoilerPlateViewModel : ViewModel() {
         AACSDK.setApiHost(apiHost)
         AACSDK.setEnvironmentId(environmentId)
         AACSDK.setApiKey(apiKey)
+        AACSDK.enableDebugMode(3)
         AACSDK.setSessionDelegate { onTokenReceived ->
             Log.d("Atomic Boilerplate", "onTokenReceived")
             onTokenReceived(requestTokenStr)
         }
+
+
     }
 
     /** Register any containers we want to receive notifications for. Also look in
@@ -64,5 +67,8 @@ class BoilerPlateViewModel : ViewModel() {
          your authentication process */
         const val requestTokenStr = ""
     }
+
+    val streamContainerId get() = containerId
 }
+
 

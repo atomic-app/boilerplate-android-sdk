@@ -1,9 +1,16 @@
 package io.atomic.android_boilerplate
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.atomic.actioncards.feed.data.model.AACCardInstance
+import com.atomic.actioncards.feed.data.model.Color
+import com.atomic.actioncards.sdk.AACSDK
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.badge.BadgeUtils
 import java.text.DateFormat
 import java.util.*
 
@@ -11,6 +18,8 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: BoilerPlateViewModel
+    private var badge: BadgeDrawable? = null
+    private lateinit var toolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +29,53 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.initContainer()
         viewModel.streamContainer?.start(R.id.cardsContainer, supportFragmentManager)
+        viewModel.streamContainer?.startUpdates()
+
+        badge = BadgeDrawable.create(this).apply {
+            isVisible = true
+            backgroundColor = android.graphics.Color.RED
+            number = 0
+        }
+
+
+        setSupportActionBar(findViewById(R.id.my_toolbar))
+        toolbar = findViewById(R.id.my_toolbar)
+
+
+        // get live count
+        viewModel.streamContainer?.let { sc ->
+            AACSDK.getLiveCardCountForStreamContainer(sc).observe(this, Observer { count ->
+                badge?.number = count ?: 0
+                badge?.let { b ->
+                    if (b.number > 0) {
+                        BadgeUtils.attachBadgeDrawable(b, toolbar, R.id.action_bell)
+                    } else {
+                        BadgeUtils.detachBadgeDrawable(badge, toolbar, R.id.action_bell)
+                    }
+                }
+            })
+        }
+
+        // get a static count of total and unseen cards if required. This is not required, just an example
+        AACSDK.userMetrics { metrics ->
+            metrics?.let {
+                if (metrics.totalCardsForStreamContainer(viewModel.streamContainerId) > 0) {
+                    badge?.number = metrics.totalCardsForStreamContainer(viewModel.streamContainerId)
+
+                    badge?.let { b ->
+                        BadgeUtils.attachBadgeDrawable(b, toolbar, R.id.action_bell)
+                    }
+                } else {
+                    BadgeUtils.detachBadgeDrawable(badge, toolbar, R.id.action_bell)
+                }
+            }
+
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
+        viewModel.streamContainer?.stopUpdates()
         viewModel.streamContainer?.destroy(supportFragmentManager)
     }
 
@@ -38,6 +89,10 @@ class MainActivity : AppCompatActivity() {
         applyHandlers(true)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_icons, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
     /** This is currently only setting runtime variables handler, but you could also setup
      * any handlers for link and submit buttons in here too */
