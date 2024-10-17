@@ -5,8 +5,10 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.atomic.actioncards.analytics.services.AACEventName
 import com.atomic.actioncards.feed.data.model.AACCardInstance
 import com.atomic.actioncards.feed.data.model.Color
+import com.atomic.actioncards.feed.feature.aacsdk_fragment.AACSDKCardFeedUpdateEvent
 import com.atomic.actioncards.sdk.AACSDK
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.badge.BadgeDrawable
@@ -71,7 +73,16 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+        // observe SDK events
+        AACSDK.observeSDKEvents { events ->
+            if (events.eventName == AACEventName.CardFeedUpdated) {
+                print("Card count ${events.cardCount}")
+                // or call AACSDKUserMetrics here?
+            }
+        }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
